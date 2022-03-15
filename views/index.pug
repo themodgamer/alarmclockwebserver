@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+    link(rel='stylesheet', href='/style')
+    link(rel='manifest', href='/manifest')
+    link(rel='preload', href='/font', as="font", crossorigin="anonymous")
+    link(rel='apple-touch-icon', href='/favicon.png')
+    script(src='./code')
+    meta(name="theme-color" media="(prefers-color-scheme: dark)"  content="black")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(name="description", content="The World's only alarm clock made by Themodgamer3 and i use it regularly.")
+  body
+    div(id="invisidiv")
+      div(id="smallbox") 
+        h1= servertitle
+        h2= server
+      div(id="smallbox")
+        h1= clientiptitle
+        h2= clientip
+      div(id="smallbox")
+        h2= settingstitle
+        form(action=buttonsettingsaction, method="get") 
+          button= buttonsettingstext
+    div(id="clockbox")
+      h1= timetitle
+      h1(id="ClockMain")= exampletime
+      h1(id="ClockSub")= examplesubclocktime
+    div
+      h2= weathertitle
+      div(id="weatherdiv")
+        each val, index in weathertoptext
+          div(id="weathersubdivs")
+            h2(id="weathertexts")= weatherdaytitles[index]
+            img(src=weathersrc[index], alt="weathericon", id="weatherico")
+            h2(id="weathertexts")= weathertoptext[index]
+            h2(id="weathertexts")= weatherbottomtext[index]      

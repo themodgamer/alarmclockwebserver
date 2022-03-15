@@ -1,0 +1,26 @@
+doctype html
+html(lang='en')
+    head
+        title= title
+        link(rel='stylesheet', href='/style')
+        link(rel='manifest', href='/manifest')
+        link(rel='preload', href='/font', as="font", crossorigin="anonymous")
+        link(rel='apple-touch-icon', href='/favicon.png')
+        script(src='./settingscode')
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        meta(name="description", content="The World's only alarm clock made by Themodgamer3 and i use it regularly.")
+        meta(name="theme-color" media="(prefers-color-scheme: dark)"  content="black")
+        
+    body
+        form(action=settingssaveaction, method="post", id="formcorrection")
+            each val, index in daysinweek
+                div(id="smallbox")
+                    h2=val
+                    label= " "
+                        div(id="settingsmallbox")
+                            input(type="checkbox", class="checkbox", name=val, checked=daysactive[index], label=" ")
+                            input(type="time", name=val + "time", value=daysvalue[index])
+                        
+            div(id="smallbox")
+                h2=savetitle
+                button(type="submit")= savebuttontext

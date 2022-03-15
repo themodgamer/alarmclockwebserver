@@ -1,0 +1,37 @@
+{
+    "short_name":"Alarm Clock",
+    "name":"Alarm Clock Management",
+    "icons":[
+        {
+            "src":"/favicon.png",
+            "type":"image/png",
+            "sizes":"192x192"
+        },
+        {
+            "src":"/favicon512.png",
+            "type":"image/png",
+            "sizes":"512x512"
+        },
+        {
+            "src":"/favicon512.png",
+            "type":"image/png",
+            "sizes":"512x512",
+            "purpose":"maskable"
+        }
+    ],
+    "scope": "/",
+    "start_url":"/",
+    "display":"fullscreen",
+    "prefer_related_applications": false,
+    "background_color": "black",
+    "theme_color": "black",
+    "shortcuts": [
+        {
+          "name": "Settings",
+          "short_name": "Settings",
+          "description": "Sets alarm clock configuration",
+          "url": "/settings",
+          "icons": [{ "src": "/favicon.png", "type": "image/png", "sizes": "192x192" },{"src":"/favicon512.png","type":"image/png","sizes":"512x512"},{"src":"/favicon512.png","type":"image/png","sizes":"512x512","purpose":"maskable"}]
+        }
+    ]
+}
