@@ -13,7 +13,7 @@ const fs = require('fs');
 
 function refreshweather() {
     setTimeout(refreshweather,1800000)
-    https.get('https://api.weatherapi.com/v1/forecast.json?key=8c048176fc0d405e80192210221403&q=Bodo&alerts=yes&days=3',res => {
+    https.get('https://api.weatherapi.com/v1/forecast.json?key=8c048176fc0d405e80192210221403&q=Sortland&alerts=yes&days=3',res => {
         let data = [];
         res.on('data', chunk => {
             data.push(chunk)
@@ -46,16 +46,16 @@ app.get('/', function (req, res) {
     var renderinput = require('./inputs/index.json')
     var settings = require('./inputs/settings.json');
     var date_ob = new Date();
-    thattime = new Date("2022-01-01T" + settings.daysvalue[date_ob.getDay()-1] + ":00")
+    thattime = new Date("2022-01-01T" + settings.daysvalue[date_ob.getDay()] + ":00")
     var selectedTime = "Alarm Disabled"
-    if (thattime.getHours() < date_ob.getHours()) {
+    if (thattime.getHours().toString() < date_ob.getHours().toString()) { //REDO all of this code idk what it is doing anymore
         selectedTime = "Alarm Disabled Tomorrow"
         if (settings.daysactive[date_ob.getDay()] == "on") {
             selectedTime = "Next Alarm Tomorrow " + settings.daysvalue[date_ob.getDay()] + ".";
         }
     } else {
-        if (settings.daysactive[date_ob.getDay()-1] == "on") {
-            selectedTime = "Next Alarm " + settings.daysvalue[date_ob.getDay()-1] + ".";
+        if (settings.daysactive[date_ob.getDay()] == "on") {
+            selectedTime = "Next Alarm " + settings.daysvalue[date_ob.getDay()] + ".";
         }
     }
     renderinput.examplesubclocktime = selectedTime;

@@ -31,7 +31,7 @@ html(lang='en')
       div(id="weatherdiv")
         each val, index in weathertoptext
           div(id="weathersubdivs")
-            h2(id="weathertexts")= weatherdaytitles[index]
+            h2(id="weathertexts", style="background-color: " + weatherdaycolor[index] + ";")= weatherdaytitles[index]
             img(src=weathersrc[index], alt="weathericon", id="weatherico")
             h2(id="weathertexts")= weathertoptext[index]
             h2(id="weathertexts")= weatherbottomtext[index]      
