@@ -38,7 +38,7 @@ function refreshweather() {
     })
     
 }
-refreshweather();
+
 
 
 app.get('/', function (req, res) {

@@ -1,0 +1,60 @@
+{"weather": [
+    {
+        "title": "Bodø",
+        "localtion": "Bodo",
+        "daytitles": [
+            "Today",
+            "Tomorrow",
+            "Later"
+        ],
+        "src": [
+            "//cdn.weatherapi.com/weather/64x64/day/302.png",
+            "//cdn.weatherapi.com/weather/64x64/day/302.png",
+            "//cdn.weatherapi.com/weather/64x64/day/308.png"
+        ],
+        "toptext": [
+            "Moderate rain",
+            "Moderate rain",
+            "Heavy rain"
+        ],
+        "bottomtext": [
+            "3°c  46.1kmh",
+            "2.6°c  26.6kmh",
+            "4.5°c  42.1kmh"
+        ],
+        "daycolor": [
+            "green",
+            "orange",
+            "red"
+        ]
+    },
+    {
+        "title": "Sortland",
+        "localtion": "Sortland",
+        "daytitles": [
+            "Today",
+            "Tomorrow",
+            "Later"
+        ],
+        "src": [
+            "//cdn.weatherapi.com/weather/64x64/day/302.png",
+            "//cdn.weatherapi.com/weather/64x64/day/302.png",
+            "//cdn.weatherapi.com/weather/64x64/day/308.png"
+        ],
+        "toptext": [
+            "Moderate rain",
+            "Moderate rain",
+            "Heavy rain"
+        ],
+        "bottomtext": [
+            "3°c  46.1kmh",
+            "2.6°c  26.6kmh",
+            "4.5°c  42.1kmh"
+        ],
+        "daycolor": [
+            "green",
+            "orange",
+            "red"
+        ]
+    }
+]}

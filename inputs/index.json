@@ -1,1 +1,15 @@
-{"title":"Alarm Clock Site","message":"Hello there!","buttontext":"Hello there","timetitle":"Clock And Alarm","exampletime":"24:60:60","examplesubclocktime":"Next Alarm Tomorrow 07:00.","servertitle":"Server Status","server":"Operating Normally","settingstitle":"Goto settings","buttonsettingsaction":"./settings","buttonsettingstext":"Settings","clientiptitle":"Client IP","clientip":"172.25.112.1","weathertitle":"Weather","weatherdaytitles":["Today","Tomorrow","Later"],"weathersrc":["//cdn.weatherapi.com/weather/64x64/day/176.png","//cdn.weatherapi.com/weather/64x64/day/302.png","//cdn.weatherapi.com/weather/64x64/day/302.png"],"weathertoptext":["Patchy rain possible","Moderate rain","Moderate rain"],"weatherbottomtext":["4.7°c  42.8kmh","3°c  48.6kmh","2.9°c  27.7kmh"],"weatherdaycolor":["green","orange","red"],"_locals":{}}
+{
+    "title": "Alarm Clock Site",
+    "message": "Hello there!",
+    "buttontext": "Hello there",
+    "timetitle": "Clock And Alarm",
+    "exampletime": "24:60:60",
+    "examplesubclocktime": "Next Alarm Tomorrow 07:00.",
+    "servertitle": "Server Status",
+    "server": "Operating Normally",
+    "settingstitle": "Goto settings",
+    "buttonsettingsaction": "./settings",
+    "buttonsettingstext": "Settings",
+    "clientiptitle": "Client IP",
+    "clientip": "172.25.112.1"
+}
