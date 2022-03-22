@@ -9,7 +9,7 @@ class Jsonedit {
 
     applychanges() {
         try {
-            fs.writeFileSync(path.join(__dirname,this.Path), JSON.stringify(this.JSON))
+            fs.writeFileSync(path.join(__dirname,this.Path), JSON.stringify(this.JSON,null,2))
         } catch (err) {
             console.error(err)
         }

@@ -8,60 +8,74 @@ const jsonfunctions = require('./editjson.js')
 const path = require('path');
 const fs = require('fs');
 
-
-
-
 function refreshweather() {
     setTimeout(refreshweather,1800000)
-    https.get('https://api.weatherapi.com/v1/forecast.json?key=8c048176fc0d405e80192210221403&q=Sortland&alerts=yes&days=3',res => {
+
+    var jsonfile = new jsonfunctions.Jsonedit("./inputs/betterweather.json")
+    for (var item of jsonfile.JSON) {
+        https.get('https://api.weatherapi.com/v1/forecast.json?key=8c048176fc0d405e80192210221403&alerts=yes&days=3&q=' + item.location,res => {
         let data = [];
         res.on('data', chunk => {
             data.push(chunk)
         });
         res.on('end', () => {
             var weatherdata = JSON.parse(Buffer.concat(data).toString());
-            var jsonfile = new jsonfunctions.Jsonedit("./inputs/index.json")
-
-            jsonfile.JSON.weathersrc[0] = weatherdata.forecast.forecastday[0].day.condition.icon
-            jsonfile.JSON.weathersrc[1] = weatherdata.forecast.forecastday[1].day.condition.icon
-            jsonfile.JSON.weathersrc[2] = weatherdata.forecast.forecastday[2].day.condition.icon
-
-            jsonfile.JSON.weathertoptext[0] = weatherdata.forecast.forecastday[0].day.condition.text
-            jsonfile.JSON.weathertoptext[1] = weatherdata.forecast.forecastday[1].day.condition.text
-            jsonfile.JSON.weathertoptext[2] = weatherdata.forecast.forecastday[2].day.condition.text
-
-            jsonfile.JSON.weatherbottomtext[0] = weatherdata.forecast.forecastday[0].day.avgtemp_c + "°c  " + weatherdata.forecast.forecastday[0].day.maxwind_kph + "kmh"
-            jsonfile.JSON.weatherbottomtext[1] = weatherdata.forecast.forecastday[1].day.avgtemp_c + "°c  " + weatherdata.forecast.forecastday[1].day.maxwind_kph + "kmh"
-            jsonfile.JSON.weatherbottomtext[2] = weatherdata.forecast.forecastday[2].day.avgtemp_c + "°c  " + weatherdata.forecast.forecastday[2].day.maxwind_kph + "kmh"
+            item.src[0] = weatherdata.forecast.forecastday[0].day.condition.icon
+            item.src[1] = weatherdata.forecast.forecastday[1].day.condition.icon
+            item.src[2] = weatherdata.forecast.forecastday[2].day.condition.icon
+            item.toptext[0] = weatherdata.forecast.forecastday[0].day.condition.text
+            item.toptext[1] = weatherdata.forecast.forecastday[1].day.condition.text
+            item.toptext[2] = weatherdata.forecast.forecastday[2].day.condition.text
+            item.bottomtext[0] = weatherdata.forecast.forecastday[0].day.avgtemp_c + "°c  " + weatherdata.forecast.forecastday[0].day.maxwind_kph + "kmh"
+            item.bottomtext[1] = weatherdata.forecast.forecastday[1].day.avgtemp_c + "°c  " + weatherdata.forecast.forecastday[1].day.maxwind_kph + "kmh"
+            item.bottomtext[2] = weatherdata.forecast.forecastday[2].day.avgtemp_c + "°c  " + weatherdata.forecast.forecastday[2].day.maxwind_kph + "kmh"
             jsonfile.applychanges()
         })
     })
-    
+    }
 }
 
-
+refreshweather()
 
 app.get('/', function (req, res) {
     Log(req.ip.toString(),"GET /");
-    var renderinput = require('./inputs/index.json')
+    var renderinput = require('./inputs/index.json');
     var settings = require('./inputs/settings.json');
-    var date_ob = new Date();
-    thattime = new Date("2022-01-01T" + settings.daysvalue[date_ob.getDay()] + ":00")
+    var timenow = new Date();
+    alarmtime = new Date("2022-01-01T" + settings.daysvalue[timenow.getDay()-1] + ":00")
+    alarmtimetomorrow = new Date("2022-01-01T" + settings.daysvalue[timenow.getDay()] + ":00")
+    
+    
+    //if today
+    // - add prefix today
+    // - if alarm enabled today then
+    // - - set selectedTime today at that time
+    //if tomorrow
+    // - add prefix tomorrow
+    // - if alarm enabled tomorrow then
+    // - - set selectedtime tomorrow at 07:30
+    
+
     var selectedTime = "Alarm Disabled"
-    if (thattime.getHours().toString() < date_ob.getHours().toString()) { //REDO all of this code idk what it is doing anymore
-        selectedTime = "Alarm Disabled Tomorrow"
-        if (settings.daysactive[date_ob.getDay()] == "on") {
-            selectedTime = "Next Alarm Tomorrow " + settings.daysvalue[date_ob.getDay()] + ".";
+    var today = (timenow.getHours() < alarmtime.getHours());
+    if (today === true) {
+        if (settings.daysactive[timenow.getDay()-1]) {
+            selectedTime = "Alarm Today At " + settings.daysvalue[timenow.getDay()-1]
         }
-    } else {
-        if (settings.daysactive[date_ob.getDay()] == "on") {
-            selectedTime = "Next Alarm " + settings.daysvalue[date_ob.getDay()] + ".";
+    } 
+    else {
+        selectedTime = "Alarm Disabled Tomorrow"
+        if (settings.daysactive[timenow.getDay()]) {
+            selectedTime = "Alarm Tomorrow At " + settings.daysvalue[timenow.getDay()]
         }
     }
+
+    //set variables
     renderinput.examplesubclocktime = selectedTime;
     renderinput.clientip = iptranslate(req.ip.toString())
-    
-    res.render('index', renderinput)
+    //render everything on server and send to client
+    var weatherdata = require('./inputs/betterweather.json');
+    res.render('index', { renderinput, weatherdata } )
 })
 
 function iptranslate(ip) {
@@ -117,28 +131,22 @@ app.get('/favicon.ico', function (req, res) {
 
 app.post('/settingsupdate', urlencodedParser, function (req, res) {
     Log(req.ip.toString(),"POST /settingsupdate");
-    var settings = require('./inputs/settings.json');
-    settings.daysvalue[0] = req.body.Mondaytime;
-    settings.daysvalue[1] = req.body.Tuesdaytime;
-    settings.daysvalue[2] = req.body.Wednesdaytime;
-    settings.daysvalue[3] = req.body.Thursdaytime;
-    settings.daysvalue[4] = req.body.Fridaytime;
-    settings.daysvalue[5] = req.body.Saturdaytime;
-    settings.daysvalue[6] = req.body.Sundaytime;
-    settings.daysactive[0] = req.body.Monday;
-    settings.daysactive[1] = req.body.Tuesday;
-    settings.daysactive[2] = req.body.Wednesday;
-    settings.daysactive[3] = req.body.Thursday;
-    settings.daysactive[4] = req.body.Friday;
-    settings.daysactive[5] = req.body.Saturday;
-    settings.daysactive[6] = req.body.Sunday;
-    
-    try {
-        fs.writeFileSync(path.join(__dirname,"./inputs/settings.json"), JSON.stringify(settings))
-    } catch (err) {
-        console.err(err)
-    }
-
+    var jsonfile = new jsonfunctions.Jsonedit('./inputs/settings.json')
+    jsonfile.JSON.daysvalue[0] = req.body.Mondaytime;
+    jsonfile.JSON.daysvalue[1] = req.body.Tuesdaytime;
+    jsonfile.JSON.daysvalue[2] = req.body.Wednesdaytime;
+    jsonfile.JSON.daysvalue[3] = req.body.Thursdaytime;
+    jsonfile.JSON.daysvalue[4] = req.body.Fridaytime;
+    jsonfile.JSON.daysvalue[5] = req.body.Saturdaytime;
+    jsonfile.JSON.daysvalue[6] = req.body.Sundaytime;
+    jsonfile.JSON.daysactive[0] = req.body.Monday;
+    jsonfile.JSON.daysactive[1] = req.body.Tuesday;
+    jsonfile.JSON.daysactive[2] = req.body.Wednesday;
+    jsonfile.JSON.daysactive[3] = req.body.Thursday;
+    jsonfile.JSON.daysactive[4] = req.body.Friday;
+    jsonfile.JSON.daysactive[5] = req.body.Saturday;
+    jsonfile.JSON.daysactive[6] = req.body.Sunday;
+    jsonfile.applychanges();
     res.redirect('/');
 })
 

@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   head
-    title= title
+    title= renderinput.title
     link(rel='stylesheet', href='/style')
     link(rel='manifest', href='/manifest')
     link(rel='preload', href='/font', as="font", crossorigin="anonymous")
@@ -13,34 +13,26 @@ html(lang='en')
   body
     div(id="invisidiv")
       div(id="smallbox") 
-        h1= servertitle
-        h2= server
+        h1= renderinput.servertitle
+        h2= renderinput.server
       div(id="smallbox")
-        h1= clientiptitle
-        h2= clientip
+        h1= renderinput.clientiptitle
+        h2= renderinput.clientip
       div(id="smallbox")
-        h2= settingstitle
-        form(action=buttonsettingsaction, method="get") 
-          button= buttonsettingstext
+        h2= renderinput.settingstitle
+        form(action=renderinput.buttonsettingsaction, method="get") 
+          button= renderinput.buttonsettingstext
     div(id="clockbox")
-      h1= timetitle
-      h1(id="ClockMain")= exampletime
-      h1(id="ClockSub")= examplesubclocktime
-    div
-      h2= weathertitle
-      div(id="weatherdiv")
-        each val, index in weathertoptext
-          div(id="weathersubdivs")
-            h2(id="weathertexts", style="background-color: " + weatherdaycolor[index] + ";")= weatherdaytitles[index]
-            img(src=weathersrc[index], alt="weathericon", id="weatherico")
-            h2(id="weathertexts")= weathertoptext[index]
-            h2(id="weathertexts")= weatherbottomtext[index]     
-    div
-      h2= weathertitle
-      div(id="weatherdiv")
-        each val, index in weathertoptext
-          div(id="weathersubdivs")
-            h2(id="weathertexts", style="background-color: " + weatherdaycolor[index] + ";")= weatherdaytitles[index]
-            img(src=weathersrc[index], alt="weathericon", id="weatherico")
-            h2(id="weathertexts")= weathertoptext[index]
-            h2(id="weathertexts")= weatherbottomtext[index] 
+      h1= renderinput.timetitle
+      h1(id="ClockMain")= renderinput.exampletime
+      h1(id="ClockSub")= renderinput.examplesubclocktime   
+    each val,index in weatherdata 
+      div
+        h2= weatherdata[index].title
+        div(id="weatherdiv")
+          each val2, index2 in weatherdata[index].toptext
+            div(id="weathersubdivs")
+              h2(id="weathertexts", style="background-color: " + weatherdata[index].daycolor[index2] + ";")= weatherdata[index].daytitles[index2]
+              img(src=weatherdata[index].src[index], alt="weathericon", id="weatherico")
+              h2(id="weathertexts")= weatherdata[index].toptext[index2]
+              h2(id="weathertexts")= weatherdata[index].bottomtext[index2] 
