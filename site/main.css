@@ -110,6 +110,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, div:hover, img:hover
 }
 
 #weathertexts {
+    color: black;
     margin: 0px;
     padding: 0px;
 }

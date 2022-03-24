@@ -12,8 +12,9 @@ function refreshweather() {
     setTimeout(refreshweather,1800000)
 
     var jsonfile = new jsonfunctions.Jsonedit("./inputs/betterweather.json")
-    for (var item of jsonfile.JSON) {
-        https.get('https://api.weatherapi.com/v1/forecast.json?key=8c048176fc0d405e80192210221403&alerts=yes&days=3&q=' + item.location,res => {
+    for (var index = 0; index < 1; index++) {
+        var item = jsonfile.JSON[index]
+        https.get('https://api.weatherapi.com/v1/forecast.json?key=8c048176fc0d405e80192210221403&alerts=no&days=3&q=' + item.location,res => {
         let data = [];
         res.on('data', chunk => {
             data.push(chunk)
@@ -26,25 +27,22 @@ function refreshweather() {
             item.toptext[0] = weatherdata.forecast.forecastday[0].day.condition.text
             item.toptext[1] = weatherdata.forecast.forecastday[1].day.condition.text
             item.toptext[2] = weatherdata.forecast.forecastday[2].day.condition.text
-            item.bottomtext[0] = weatherdata.forecast.forecastday[0].day.avgtemp_c + "°c  " + weatherdata.forecast.forecastday[0].day.maxwind_kph + "kmh"
-            item.bottomtext[1] = weatherdata.forecast.forecastday[1].day.avgtemp_c + "°c  " + weatherdata.forecast.forecastday[1].day.maxwind_kph + "kmh"
-            item.bottomtext[2] = weatherdata.forecast.forecastday[2].day.avgtemp_c + "°c  " + weatherdata.forecast.forecastday[2].day.maxwind_kph + "kmh"
-            jsonfile.applychanges()
         })
     })
     }
+    jsonfile.applychanges()
 }
 
 refreshweather()
 
 app.get('/', function (req, res) {
     Log(req.ip.toString(),"GET /");
+
     var renderinput = require('./inputs/index.json');
     var settings = require('./inputs/settings.json');
     var timenow = new Date();
     alarmtime = new Date("2022-01-01T" + settings.daysvalue[timenow.getDay()-1] + ":00")
     alarmtimetomorrow = new Date("2022-01-01T" + settings.daysvalue[timenow.getDay()] + ":00")
-    
     
     //if today
     // - add prefix today
@@ -54,7 +52,6 @@ app.get('/', function (req, res) {
     // - add prefix tomorrow
     // - if alarm enabled tomorrow then
     // - - set selectedtime tomorrow at 07:30
-    
 
     var selectedTime = "Alarm Disabled"
     var today = (timenow.getHours() < alarmtime.getHours());
@@ -91,45 +88,59 @@ function iptranslate(ip) {
 
 app.get('/settings', function (req, res) {
     Log(req.ip.toString(),"GET /settings");
+    res.set("Content-Security-Policy", "default-src 'self'");
+
     res.render('settings', require('./inputs/settings.json'))
 })
 
 app.get('/alarm.mp3', function (req, res) {
     Log(req.ip.toString(),"GET /alarm");
+    res.set("Content-Security-Policy", "default-src 'self'");
+
     res.sendFile(path.join(__dirname,"./site/alarm.mp3"))
 })
 
 app.get('/service-worker', function (req, res) {
     Log(req.ip.toString(),"GET /service-worker");
+    res.set("Content-Security-Policy", "default-src 'self'");
+
     res.sendFile(path.join(__dirname,"./site/service-worker.js"))
 })
 
 app.get('/offline.html', function (req, res) {
+    res.set("Content-Security-Policy", "default-src 'self'");
+
     Log(req.ip.toString(),"GET /offline.html");
     res.sendFile(path.join(__dirname,"./site/offline.html"))
 })
 
 app.get('/manifest', function (req, res) {
+    res.set("Content-Security-Policy", "default-src 'self'");
+
     Log(req.ip.toString(),"GET /manifest");
     res.sendFile(path.join(__dirname,"./site/main.webmanifest"))
 })
 
 app.get('/favicon.png', function (req, res) {
+    res.set("Content-Security-Policy", "default-src 'self'");
     Log(req.ip.toString(),"GET /favicon.png");
     res.sendFile(path.join(__dirname,"./site/favicon.png"))
 })
 
 app.get('/favicon512.png', function (req, res) {
+    res.set("Content-Security-Policy", "default-src 'self'");
     Log(req.ip.toString(),"GET /favicon512.png");
     res.sendFile(path.join(__dirname,"./site/favicon512.png"))
 })
 
 app.get('/favicon.ico', function (req, res) {
+    res.set("Content-Security-Policy", "default-src 'self'");
     Log(req.ip.toString(),"GET /favicon.ico");
     res.sendFile(path.join(__dirname,"./site/favicon.png"))
 })
 
 app.post('/settingsupdate', urlencodedParser, function (req, res) {
+    res.set("Content-Security-Policy", "default-src 'self'");
     Log(req.ip.toString(),"POST /settingsupdate");
     var jsonfile = new jsonfunctions.Jsonedit('./inputs/settings.json')
     jsonfile.JSON.daysvalue[0] = req.body.Mondaytime;
@@ -156,16 +167,19 @@ app.get('/style', function (req, res) {
 })
 
 app.get('/font', function (req, res) {
+    res.set("Content-Security-Policy", "default-src 'self'");
     Log(req.ip.toString(),"GET /font");
     res.sendFile(path.join(__dirname, './site/Smooch.ttf'));
 })
 
 app.get('/code', function (req, res) {
+    res.set("Content-Security-Policy", "default-src 'self'");
     Log(req.ip.toString(),"GET /code");
     res.sendFile(path.join(__dirname, './site/webpage.js'));
 })
 
 app.get('/settingscode', function (req, res) {
+    res.set("Content-Security-Policy", "default-src 'self'");
     Log(req.ip.toString(),"GET /settingscode");
     res.sendFile(path.join(__dirname, './site/settings.js'));
 })

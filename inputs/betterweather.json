@@ -17,14 +17,9 @@
       "Moderate rain",
       "Heavy rain"
     ],
-    "bottomtext": [
-      "3°c  46.1kmh",
-      "2.6°c  26.6kmh",
-      "4.5°c  42.1kmh"
-    ],
     "daycolor": [
       "green",
-      "orange",
+      "darkorange",
       "red"
     ]
   },
@@ -37,23 +32,18 @@
       "Later"
     ],
     "src": [
-      "//cdn.weatherapi.com/weather/64x64/day/308.png",
-      "//cdn.weatherapi.com/weather/64x64/day/176.png",
-      "//cdn.weatherapi.com/weather/64x64/day/308.png"
+      "//cdn.weatherapi.com/weather/64x64/day/371.png",
+      "//cdn.weatherapi.com/weather/64x64/day/338.png",
+      "//cdn.weatherapi.com/weather/64x64/day/371.png"
     ],
     "toptext": [
-      "Heavy rain",
-      "Patchy rain possible",
-      "Heavy rain"
-    ],
-    "bottomtext": [
-      "4.4°c  48.2kmh",
-      "4.2°c  25.2kmh",
-      "5°c  58.7kmh"
+      "Moderate or heavy snow showers",
+      "Heavy snow",
+      "Moderate or heavy snow showers"
     ],
     "daycolor": [
       "green",
-      "orange",
+      "darkorange",
       "red"
     ]
   }
