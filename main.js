@@ -14,21 +14,26 @@ function refreshweather() {
     var jsonfile = new jsonfunctions.Jsonedit("./inputs/betterweather.json")
     for (var index = 0; index < 1; index++) {
         var item = jsonfile.JSON[index]
-        https.get('https://api.weatherapi.com/v1/forecast.json?key=8c048176fc0d405e80192210221403&alerts=no&days=3&q=' + item.location,res => {
-        let data = [];
-        res.on('data', chunk => {
-            data.push(chunk)
-        });
-        res.on('end', () => {
-            var weatherdata = JSON.parse(Buffer.concat(data).toString());
-            item.src[0] = weatherdata.forecast.forecastday[0].day.condition.icon
-            item.src[1] = weatherdata.forecast.forecastday[1].day.condition.icon
-            item.src[2] = weatherdata.forecast.forecastday[2].day.condition.icon
-            item.toptext[0] = weatherdata.forecast.forecastday[0].day.condition.text
-            item.toptext[1] = weatherdata.forecast.forecastday[1].day.condition.text
-            item.toptext[2] = weatherdata.forecast.forecastday[2].day.condition.text
-        })
-    })
+        try {
+            https.get('https://api.weatherapi.com/v1/forecast.json?key=8c048176fc0d405e80192210221403&alerts=no&days=3&q=' + item.location,res => {
+            let data = [];
+            res.on('data', chunk => {
+                data.push(chunk)
+            });
+            res.on('end', () => {
+                var weatherdata = JSON.parse(Buffer.concat(data).toString());
+                item.src[0] = weatherdata.forecast.forecastday[0].day.condition.icon
+                item.src[1] = weatherdata.forecast.forecastday[1].day.condition.icon
+                item.src[2] = weatherdata.forecast.forecastday[2].day.condition.icon
+                item.toptext[0] = weatherdata.forecast.forecastday[0].day.condition.text
+                item.toptext[1] = weatherdata.forecast.forecastday[1].day.condition.text
+                item.toptext[2] = weatherdata.forecast.forecastday[2].day.condition.text
+            })})
+        } catch (error) {
+            console.log(error)
+        }
+        
+    
     }
     jsonfile.applychanges()
 }

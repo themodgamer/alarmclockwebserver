@@ -9,13 +9,13 @@
     ],
     "src": [
       "//cdn.weatherapi.com/weather/64x64/day/302.png",
-      "//cdn.weatherapi.com/weather/64x64/day/302.png",
-      "//cdn.weatherapi.com/weather/64x64/day/308.png"
+      "//cdn.weatherapi.com/weather/64x64/day/308.png",
+      "//cdn.weatherapi.com/weather/64x64/day/230.png"
     ],
     "toptext": [
       "Moderate rain",
-      "Moderate rain",
-      "Heavy rain"
+      "Heavy rain",
+      "Blizzard"
     ],
     "daycolor": [
       "green",
