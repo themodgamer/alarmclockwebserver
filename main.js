@@ -59,16 +59,16 @@ app.get('/', function (req, res) {
     // - - set selectedtime tomorrow at 07:30
 
     var selectedTime = "Alarm Disabled"
-    var today = (timenow.getHours() < alarmtime.getHours());
+    var today = (timenow.getHours() < alarmtime.getHours()+1);
     if (today === true) {
         if (settings.daysactive[timenow.getDay()-1]) {
-            selectedTime = "Alarm Today At " + settings.daysvalue[timenow.getDay()-1]
+            selectedTime = "Alarm Today At " + settings.daysvalue[timenow.getDay()-1] + "."
         }
     } 
     else {
         selectedTime = "Alarm Disabled Tomorrow"
         if (settings.daysactive[timenow.getDay()]) {
-            selectedTime = "Alarm Tomorrow At " + settings.daysvalue[timenow.getDay()]
+            selectedTime = "Alarm Tomorrow At " + settings.daysvalue[timenow.getDay()] + "."
         }
     }
 

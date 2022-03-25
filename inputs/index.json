@@ -11,5 +11,8 @@
     "buttonsettingsaction": "./settings",
     "buttonsettingstext": "Settings",
     "clientiptitle": "Client IP",
-    "clientip": "172.25.112.1"
+    "clientip": "172.25.112.1",
+    "alarmtitle": "ALARM",
+    "alarmsubtitle": "WAKE UP",
+    "alarmdonebutton": "Done"
 }

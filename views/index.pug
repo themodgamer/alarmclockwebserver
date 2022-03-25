@@ -35,3 +35,7 @@ html(lang='en')
               h2(id="weathertexts", style="background-color: " + weatherdata[index].daycolor[index2] + ";")= weatherdata[index].daytitles[index2]
               img(src=weatherdata[index].src[index], alt="weathericon", id="weatherico")
               h2= weatherdata[index].toptext[index2]
+    div(id="alarmpopup")
+      h1= renderinput.alarmtitle 
+      h2= renderinput.alarmsubtitle
+      button(id="alarmdonebutton")= renderinput.alarmdonebutton

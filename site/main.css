@@ -119,3 +119,13 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, div:hover, img:hover
     width: 130px;
     height: 180px;
 }
+
+#alarmpopup {
+    display: block;
+    position: absolute;
+    width: 20%;
+    height: 15%;
+    top: 10%;
+    left: auto;
+    right: auto;
+}
