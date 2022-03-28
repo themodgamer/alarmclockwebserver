@@ -47,9 +47,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, div:hover, img:hover
     transition: 0.3s
 }
 
-#clockbox {
-    width: 840px;
-}
+
 
 #ClockMain {
     font-size: 240px;
@@ -128,4 +126,29 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, div:hover, img:hover
     top: 10%;
     left: auto;
     right: auto;
+}
+
+#todolist {
+    overflow: auto;
+}
+
+#flex-no-overflow {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.font-left {
+    text-align: left;
+}
+
+.size-0-width {
+    width: 210px;
+}
+
+.size-1-width {
+    width: 420px;
+}
+
+.size-2-width {
+    width: 840px;
 }

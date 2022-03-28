@@ -14,7 +14,7 @@ function Time() {
                     try {
                         var alarmpopup = document.getElementById("alarmpopup")
                         alarmpopup.style.visibility = 'visible'
-                        playsound = new Audio("./alarm.mp3");
+                        playsound = new Audio("https://stream.rekt.network/chillsynth.m4a");
                         playsound.play()
                     } catch (error) {
                         console.log(error)

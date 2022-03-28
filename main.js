@@ -11,7 +11,7 @@ const fs = require('fs');
 function refreshweather() {
     setTimeout(refreshweather,1800000)
 
-    var jsonfile = new jsonfunctions.Jsonedit("./inputs/betterweather.json")
+    var jsonfile = new jsonfunctions.Jsonedit("./inputs/Weather.json")
     for (var index = 0; index < 1; index++) {
         var item = jsonfile.JSON[index]
         try {
@@ -42,12 +42,13 @@ refreshweather()
 
 app.get('/', function (req, res) {
     Log(req.ip.toString(),"GET /");
+    res.cookie('ALL', '_ALL_COOKIES', { sameSite: 'none', secure: true})
 
-    var renderinput = require('./inputs/index.json');
-    var settings = require('./inputs/settings.json');
+    var Common = require('./inputs/Common.json');
+    var UserData = require('./inputs/UserData.json');
     var timenow = new Date();
-    alarmtime = new Date("2022-01-01T" + settings.daysvalue[timenow.getDay()-1] + ":00")
-    alarmtimetomorrow = new Date("2022-01-01T" + settings.daysvalue[timenow.getDay()] + ":00")
+    alarmtime = new Date("2022-01-01T" + UserData.daysvalue[timenow.getDay()-1] + ":00")
+    alarmtimetomorrow = new Date("2022-01-01T" + UserData.daysvalue[timenow.getDay()] + ":00")
     
     //if today
     // - add prefix today
@@ -61,23 +62,24 @@ app.get('/', function (req, res) {
     var selectedTime = "Alarm Disabled"
     var today = (timenow.getHours() < alarmtime.getHours()+1);
     if (today === true) {
-        if (settings.daysactive[timenow.getDay()-1]) {
-            selectedTime = "Alarm Today At " + settings.daysvalue[timenow.getDay()-1] + "."
+        if (UserData.daysactive[timenow.getDay()-1]) {
+            selectedTime = "Alarm Today At " + UserData.daysvalue[timenow.getDay()-1] + "."
         }
     } 
     else {
         selectedTime = "Alarm Disabled Tomorrow"
-        if (settings.daysactive[timenow.getDay()]) {
-            selectedTime = "Alarm Tomorrow At " + settings.daysvalue[timenow.getDay()] + "."
+        if (UserData.daysactive[timenow.getDay()]) {
+            selectedTime = "Alarm Tomorrow At " + UserData.daysvalue[timenow.getDay()] + "."
         }
     }
 
     //set variables
-    renderinput.examplesubclocktime = selectedTime;
-    renderinput.clientip = iptranslate(req.ip.toString())
+    Common.examplesubclocktime = selectedTime;
+    Common.clientip = iptranslate(req.ip.toString())
     //render everything on server and send to client
-    var weatherdata = require('./inputs/betterweather.json');
-    res.render('index', { renderinput, weatherdata } )
+    var Weather = require('./inputs/Weather.json');
+    var Todolist = require('./inputs/Todolist.json');
+    res.render('index', { Common, Weather, Todolist } )
 })
 
 function iptranslate(ip) {
@@ -95,7 +97,7 @@ app.get('/settings', function (req, res) {
     Log(req.ip.toString(),"GET /settings");
     res.set("Content-Security-Policy", "default-src 'self'");
 
-    res.render('settings', require('./inputs/settings.json'))
+    res.render('settings', require('./inputs/UserData.json'))
 })
 
 app.get('/alarm.mp3', function (req, res) {
@@ -147,7 +149,7 @@ app.get('/favicon.ico', function (req, res) {
 app.post('/settingsupdate', urlencodedParser, function (req, res) {
     res.set("Content-Security-Policy", "default-src 'self'");
     Log(req.ip.toString(),"POST /settingsupdate");
-    var jsonfile = new jsonfunctions.Jsonedit('./inputs/settings.json')
+    var jsonfile = new jsonfunctions.Jsonedit('./inputs/UserData.json')
     jsonfile.JSON.daysvalue[0] = req.body.Mondaytime;
     jsonfile.JSON.daysvalue[1] = req.body.Tuesdaytime;
     jsonfile.JSON.daysvalue[2] = req.body.Wednesdaytime;

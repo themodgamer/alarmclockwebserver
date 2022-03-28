@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   head
-    title= renderinput.title
+    title= Common.title
     link(rel='stylesheet', href='/style')
     link(rel='manifest', href='/manifest')
     link(rel='preload', href='/font', as="font", crossorigin="anonymous")
@@ -11,31 +11,36 @@ html(lang='en')
     meta(name="viewport", content="width=device-width, initial-scale=1")
     meta(name="description", content="The World's only alarm clock made by Themodgamer3 and i use it regularly.")
   body
-    div(id="invisidiv")
+    div(id="invisidiv", class="size-0-width")
       div(id="smallbox") 
-        h1= renderinput.servertitle
-        h2= renderinput.server
+        h1= Common.servertitle
+        h2= Common.server
       div(id="smallbox")
-        h1= renderinput.clientiptitle
-        h2= renderinput.clientip
+        h1= Common.clientiptitle
+        h2= Common.clientip
       div(id="smallbox")
-        h2= renderinput.settingstitle
-        form(action=renderinput.buttonsettingsaction, method="get") 
-          button= renderinput.buttonsettingstext
-    div(id="clockbox")
-      h1= renderinput.timetitle
-      h1(id="ClockMain")= renderinput.exampletime
-      h1(id="ClockSub")= renderinput.examplesubclocktime   
-    each val,index in weatherdata 
+        h2= Common.settingstitle
+        form(action=Common.buttonsettingsaction, method="get") 
+          button= Common.buttonsettingstext
+    div(id="size-2-width")
+      h1= Common.timetitle
+      h1(id="ClockMain")= Common.exampletime
+      h1(id="ClockSub")= Common.examplesubclocktime   
+    div(class="size-1-width") 
+      h1=Todolist.title
+      each val, index in Todolist.items
+        div(id="flex-no-overflow")
+          h2(id="twoqwidth", class="font-left")= val
+    each val,index in Weather
       div
-        h2= weatherdata[index].title
-        div(id="weatherdiv")
-          each val2, index2 in weatherdata[index].toptext
+        h2= Weather[index].title
+        div(id="weatherdiv", class="size-1-width")
+          each val2, index2 in Weather[index].toptext
             div(id="weathersubdivs")
-              h2(id="weathertexts", style="background-color: " + weatherdata[index].daycolor[index2] + ";")= weatherdata[index].daytitles[index2]
-              img(src=weatherdata[index].src[index], alt="weathericon", id="weatherico")
-              h2= weatherdata[index].toptext[index2]
+              h2(id="weathertexts", style="background-color: " + Weather[index].daycolor[index2] + ";")= Weather[index].daytitles[index2]
+              img(src=Weather[index].src[index], alt="weathericon", id="weatherico")
+              h2= Weather[index].toptext[index2]
     div(id="alarmpopup")
-      h1= renderinput.alarmtitle 
-      h2= renderinput.alarmsubtitle
-      button(id="alarmdonebutton")= renderinput.alarmdonebutton
+      h1= Common.alarmtitle 
+      h2= Common.alarmsubtitle
+      button(id="alarmdonebutton")= Common.alarmdonebutton
