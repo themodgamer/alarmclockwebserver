@@ -8,14 +8,14 @@
       "Later"
     ],
     "src": [
-      "//cdn.weatherapi.com/weather/64x64/day/230.png",
-      "//cdn.weatherapi.com/weather/64x64/day/371.png",
-      "//cdn.weatherapi.com/weather/64x64/day/371.png"
+      "//cdn.weatherapi.com/weather/64x64/day/113.png",
+      "//cdn.weatherapi.com/weather/64x64/day/122.png",
+      "//cdn.weatherapi.com/weather/64x64/day/116.png"
     ],
     "toptext": [
-      "Blizzard",
-      "Moderate or heavy snow showers",
-      "Moderate or heavy snow showers"
+      "Sunny",
+      "Overcast",
+      "Partly cloudy"
     ],
     "daycolor": [
       "green",

@@ -46,9 +46,7 @@ app.get('/', function (req, res) {
 
     var Common = require('./inputs/Common.json');
     var UserData = require('./inputs/UserData.json');
-    var timenow = new Date();
-    alarmtime = new Date("2022-01-01T" + UserData.daysvalue[timenow.getDay()-1] + ":00")
-    alarmtimetomorrow = new Date("2022-01-01T" + UserData.daysvalue[timenow.getDay()] + ":00")
+    
     
     //if today
     // - add prefix today
@@ -59,22 +57,8 @@ app.get('/', function (req, res) {
     // - if alarm enabled tomorrow then
     // - - set selectedtime tomorrow at 07:30
 
-    var selectedTime = "Alarm Disabled"
-    var today = (timenow.getHours() < alarmtime.getHours()+1);
-    if (today === true) {
-        if (UserData.daysactive[timenow.getDay()-1]) {
-            selectedTime = "Alarm Today At " + UserData.daysvalue[timenow.getDay()-1] + "."
-        }
-    } 
-    else {
-        selectedTime = "Alarm Disabled Tomorrow"
-        if (UserData.daysactive[timenow.getDay()]) {
-            selectedTime = "Alarm Tomorrow At " + UserData.daysvalue[timenow.getDay()] + "."
-        }
-    }
 
     //set variables
-    Common.examplesubclocktime = selectedTime;
     Common.clientip = iptranslate(req.ip.toString())
     //render everything on server and send to client
     var Weather = require('./inputs/Weather.json');
@@ -150,20 +134,6 @@ app.post('/settingsupdate', urlencodedParser, function (req, res) {
     res.set("Content-Security-Policy", "default-src 'self'");
     Log(req.ip.toString(),"POST /settingsupdate");
     var jsonfile = new jsonfunctions.Jsonedit('./inputs/UserData.json')
-    jsonfile.JSON.daysvalue[0] = req.body.Mondaytime;
-    jsonfile.JSON.daysvalue[1] = req.body.Tuesdaytime;
-    jsonfile.JSON.daysvalue[2] = req.body.Wednesdaytime;
-    jsonfile.JSON.daysvalue[3] = req.body.Thursdaytime;
-    jsonfile.JSON.daysvalue[4] = req.body.Fridaytime;
-    jsonfile.JSON.daysvalue[5] = req.body.Saturdaytime;
-    jsonfile.JSON.daysvalue[6] = req.body.Sundaytime;
-    jsonfile.JSON.daysactive[0] = req.body.Monday;
-    jsonfile.JSON.daysactive[1] = req.body.Tuesday;
-    jsonfile.JSON.daysactive[2] = req.body.Wednesday;
-    jsonfile.JSON.daysactive[3] = req.body.Thursday;
-    jsonfile.JSON.daysactive[4] = req.body.Friday;
-    jsonfile.JSON.daysactive[5] = req.body.Saturday;
-    jsonfile.JSON.daysactive[6] = req.body.Sunday;
     jsonfile.applychanges();
     res.redirect('/');
 })

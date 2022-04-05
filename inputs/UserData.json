@@ -3,35 +3,24 @@
   "hometitle": "Goto Home",
   "buttonhomeaction": "./",
   "buttonhometext": "Back",
-  "daysinweek": [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday"
-  ],
-  "daysactive": [
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on"
-  ],
-  "daysvalue": [
-    "10:29",
-    "07:00",
-    "14:32",
-    "13:45",
-    "09:55",
-    "07:00",
-    "23:55"
-  ],
   "savetitle": "Save Settings",
   "savebuttontext": "Save",
   "settingssaveaction": "./settingsupdate",
-  "_locals": {}
+  "create": "Create",
+  "Alarms": [
+    {
+      "Day": "Monday",
+      "Time": "07:30",
+      "Active": "on"
+    },
+    {
+      "Day": "Tuesday",
+      "Time": "08:30",
+      "Active": "on"
+    }
+  ],
+  "_locals": {},
+  "newalarmdaynumtitle": "Day Number",
+  "newalarmactivetitle": "Active",
+  "newalarmtimetitle": "Time of day"
 }
