@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
     head
-        title= title
+        title= UserData.title
         link(rel='stylesheet', href='/style')
         link(rel='manifest', href='/manifest')
         link(rel='preload', href='/font', as="font", crossorigin="anonymous")
@@ -12,21 +12,21 @@ html(lang='en')
         meta(name="theme-color" media="(prefers-color-scheme: dark)"  content="black")
         
     body
-        form(action=settingssaveaction, method="post", id="formcorrection")
+        form(action=UserData.settingssaveaction, method="post", id="formcorrection")
             div(id="smallbox")
-                h2=savetitle
-                button(type="submit")= savebuttontext
+                h2=UserData.savetitle
+                button(type="submit")= UserData.savebuttontext
             div(class="size-1-width")
-                button(id="greencreatebutton")= create
-                each val, index in Alarms
+                button(id="greencreatebutton")= UserData.create
+                each val, index in UserData.Alarms
                     div
-                        h2=Alarms[index].Day
-                        h2=Alarms[index].Time
-                        input(type="checkbox", class="checkbox", name=val, checked=Alarms[index].Active, label=" ")
+                        h2=UserData.Alarms[index].Day
+                        h2=UserData.Alarms[index].Time
+                        input(type="checkbox", class="checkbox", name=val, checked=UserData.Alarms[index].Active, label=" ")
             div(id="settingspopup")
-                h1= newalarmdaynumtitle
+                h1= UserData.newalarmdaynumtitle
                 input(type="number",name="newalarmdaynum", min="1", max="7")
-                h1= newalarmactivetitle
+                h1= UserData.newalarmactivetitle
                 input(type="checkbox", class="checkbox", name="newalarmactive",checked="on", label=" ")
-                h1= newalarmtimetitle
+                h1= UserData.newalarmtimetitle
                 input(type="time", name="newalarmtime", label=" ")

@@ -25,12 +25,7 @@ html(lang='en')
     div(id="size-2-width")
       h1= Common.timetitle
       h1(id="ClockMain")= Common.exampletime
-      h1(id="ClockSub")= Common.examplesubclocktime   
-    div(class="size-1-width") 
-      h1=Todolist.title
-      each val, index in Todolist.items
-        div(id="flex-no-overflow")
-          h2(id="twoqwidth", class="font-left")= val
+      h1(id="ClockSub")= Common.examplesubclocktime  
     each val,index in Weather
       div
         h2= Weather[index].title

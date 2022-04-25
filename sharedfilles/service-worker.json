@@ -1,0 +1,5 @@
+{
+    "name": "Service-Worker",
+    "address":"/service-worker",
+    "filename": "./site/service-worker.js"
+}
