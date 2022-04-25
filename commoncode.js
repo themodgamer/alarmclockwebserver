@@ -14,7 +14,14 @@ function foerachfile(folderpath,callfunction) {
 
 function Log(ip,action) {
     var date_ob = new Date();
-    console.log(chalk.green("[" + date_ob.getHours() + ":" + date_ob.getMinutes() + "] [" + iptranslate(ip.toString()) + "] [" + action.toString() + "]"))
+    console.log(chalk.green("[" + addzero(date_ob.getHours()) + ":" + addzero(date_ob.getMinutes()) + "] [" + iptranslate(ip.toString()) + "] [" + action.toString() + "]"))
+}
+
+function addzero(num) {
+    if (num < 10) {
+        return "0" + num.toString();
+    }
+    return num.toString();
 }
 
 function iptranslate(ip) {
