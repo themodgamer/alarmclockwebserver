@@ -4,7 +4,6 @@ const chalk = require('chalk');
 
 function foerachfile(folderpath,callfunction) {
     var files = fs.readdirSync(folderpath);
-
     for (var file in files) {
         if (callfunction != null) {
             callfunction(path.join(__dirname,path.join(folderpath,files[file])));

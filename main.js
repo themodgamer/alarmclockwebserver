@@ -47,7 +47,7 @@ function sharefile(filename) {
 function refreshweather() {
     setTimeout(refreshweather,1800000)//relaunches it in like 30 minutes
     var jsonfile = new jsonfunctions.Jsonedit("./inputs/Weather.json")
-    for (var index = 0; index < 1; index++) {
+    for (var index = 0; index < 2; index++) {
         var item = jsonfile.JSON[index]
         try {
             https.get('https://api.weatherapi.com/v1/forecast.json?key=8c048176fc0d405e80192210221403&alerts=no&days=3&q=' + item.location,res => {
@@ -79,11 +79,6 @@ function updateinputs(req, res) {
     //find one with the closets hour
 
     var selectedindex 
-
-    for (var item in UserData.Alarms) {
-
-    }
-
     //set variables
     Common.clientip = commoncode.iptranslate(req.ip.toString())
     //render everything on server and send to client
