@@ -90,6 +90,7 @@ function updateinputs(req, res) {
 app.post('/settingsupdate', urlencodedParser, function (req, res) {
     res.set("Content-Security-Policy", "default-src 'self'");
     commoncode.Log(req.ip.toString(),"POST /settingsupdate");
+    console.log(req.body)
     var jsonfile = new jsonfunctions.Jsonedit('./inputs/UserData.json')
     jsonfile.applychanges();
     res.redirect('/');

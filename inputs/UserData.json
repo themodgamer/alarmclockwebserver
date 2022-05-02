@@ -10,17 +10,14 @@
   "Alarms": [
     {
       "Day": "Monday",
-      "Time": "07:30",
-      "Active": "on"
+      "Time": "07:30"
     },
     {
       "Day": "Tuesday",
-      "Time": "08:30",
-      "Active": "on"
+      "Time": "08:30"
     }
   ],
   "_locals": {},
   "newalarmdaynumtitle": "Day Number",
-  "newalarmactivetitle": "Active",
   "newalarmtimetitle": "Time of day"
 }
