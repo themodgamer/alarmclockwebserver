@@ -103,7 +103,6 @@ function updateinputs(req, res) {
             if (hour > currenthour || hour == currenthour) {
                 
                 if (hour == closesthour) {
-                    console.log(minute < closestminutes,minute,closestminutes)
                     if (minute >= currentminutes && minute < closestminutes) {
                         closestminutes = minute;
                         Common.subclocktime = "Next Alarm " + commoncode.addzero(closesthour) + ":" + commoncode.addzero(closestminutes) + ".";
