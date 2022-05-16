@@ -2,10 +2,13 @@ doctype html
 html(lang='en')
     head
         title= UserData.title
-        link(rel='stylesheet', href='/style')
+        
         link(rel='manifest', href='/manifest')
-        link(rel='preload', href='/font', as="font", crossorigin="anonymous")
+        link(rel='preload', href='./settingscode', as='script')
+        link(rel='preload', href='/style', as="style")
+        link(rel='preload', href='/font', as="font", crossorigin='anonymous')
         link(rel='apple-touch-icon', href='/favicon.png')
+        link(rel='stylesheet', href='/style')
         script(src='./settingscode')
         meta(name="viewport", content="width=device-width, initial-scale=1")
         meta(name="description", content="The World's only alarm clock made by Themodgamer3 and i use it regularly.")
@@ -17,14 +20,13 @@ html(lang='en')
                 h2=UserData.savetitle
                 button(type="submit")= UserData.savebuttontext
             div(class="size-1-width")
-                
                 each val, index in UserData.Alarms
                     div
-                        h2(label=" ",name="Day")=UserData.Alarms[index].Day
+                        h2(label=" ",name="Day")=Common.daynumbers[UserData.Alarms[index].Day]
                         h2(label=" ",time="Time")=UserData.Alarms[index].Time
             div(id="settingspopup")
-                h1= UserData.newalarmdaynumtitle
-                input(type="number",name="newalarmdaynum", min="1", max="7")
-                h1= UserData.newalarmtimetitle
-                input(type="time", name="newalarmtime", label=" ")
-                button(id="greencreatebutton", formaction="")= UserData.create
+                label= UserData.newalarmdaynumtitle
+                    input(type="number",name="newalarmdaynum", min="0", max="6")
+                label= UserData.newalarmtimetitle
+                    input(type="time", name="newalarmtime", label=" ")
+                button(id="greencreatebutton")= UserData.create

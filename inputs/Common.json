@@ -5,6 +5,8 @@
     "timetitle": "Clock And Alarm",
     "exampletime": "24:60:60",
     "examplesubclocktime": "Next Alarm Tomorrow 07:00.",
+    "time": "24:60:60",
+    "subclocktime": "Next Alarm Tomorrow 07:00.",
     "servertitle": "Server Status",
     "server": "Operating Normally",
     "settingstitle": "Goto settings",
@@ -14,5 +16,6 @@
     "clientip": "172.25.112.1",
     "alarmtitle": "ALARM",
     "alarmsubtitle": "WAKE UP",
-    "alarmdonebutton": "Done"
+    "alarmdonebutton": "Done",
+    "daynumbers":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 }
