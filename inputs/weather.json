@@ -33,13 +33,13 @@
     ],
     "src": [
       "//cdn.weatherapi.com/weather/64x64/day/371.png",
-      "//cdn.weatherapi.com/weather/64x64/day/338.png",
-      "//cdn.weatherapi.com/weather/64x64/day/371.png"
+      "//cdn.weatherapi.com/weather/64x64/day/371.png",
+      "//cdn.weatherapi.com/weather/64x64/day/308.png"
     ],
     "toptext": [
       "Moderate or heavy snow showers",
-      "Heavy snow",
-      "Moderate or heavy snow showers"
+      "Moderate or heavy snow showers",
+      "Heavy rain"
     ],
     "daycolor": [
       "green",
