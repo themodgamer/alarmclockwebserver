@@ -34,4 +34,12 @@ function iptranslate(ip) {
     return translatedip;
 }
 
-module.exports = {foerachfile,Log,iptranslate};
+function fuse(callfunctions) {
+    try {
+        callfunctions();
+    } catch (error) {
+        console.log(chalk.redBright(error));
+    }
+}
+
+module.exports = {foerachfile,Log,iptranslate, fuse, addzero};

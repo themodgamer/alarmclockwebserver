@@ -52,7 +52,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, div:hover, img:hover
 #ClockMain {
     font-size: 240px;
     padding: 8px;
-    width: 780px;
+    width: 1000px;
 }
 
 #ClockSub {
@@ -123,17 +123,16 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, div:hover, img:hover
     display: block;
     position: absolute;
     width: 20%;
-    height: 15%;
+    height: 25%;
     top: 10%;
     left: auto;
     right: auto;
+    background-color: red;
 }
 
-#settingspopup {
-    display: block;
-    position: absolute;
-    width: 10%;
-    height: 25%;
+#settingspopup {    
+    width: 50%;
+    height: 26%;
     top: 10%;
     left: auto;
     right: auto;
@@ -165,5 +164,5 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, div:hover, img:hover
 }
 
 #greencreatebutton {
-    background-color: green;
+    background-color: lightgreen;
 }

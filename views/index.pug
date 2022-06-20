@@ -24,8 +24,8 @@ html(lang='en')
           button= Common.buttonsettingstext
     div(id="size-2-width")
       h1= Common.timetitle
-      h1(id="ClockMain")= Common.exampletime
-      h1(id="ClockSub")= Common.examplesubclocktime  
+      h1(id="ClockMain")= Common.time
+      h1(id="ClockSub")= Common.subclocktime  
     each val,index in Weather
       div
         h2= Weather[index].title
