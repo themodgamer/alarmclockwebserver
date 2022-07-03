@@ -114,10 +114,7 @@ function updateinputs(req, res) {
                     Common.subclocktime = "Next Alarm " + commoncode.addzero(closesthour) + ":" + commoncode.addzero(closestminutes) + ".";
                 }
             }
-            
         });
-
-        
     }
 
     //set variables

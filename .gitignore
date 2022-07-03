@@ -1,2 +1,5 @@
 node_modules/
 site/alarm.mp3
+inputs/UserData.json
+inputs/weather.json
+inputs/weather.json
